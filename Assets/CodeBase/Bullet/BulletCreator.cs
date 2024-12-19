@@ -1,37 +1,39 @@
 using UnityEngine;
 
-public class BulletCreator : MonoBehaviour
+namespace CodeBase.Bullet
 {
-    [SerializeField] private GameObject standartBulletPrefab; 
-    [SerializeField] private GameObject explosiveBulletPrefab; 
-    [SerializeField] private GameObject bouncingBulletPrefab; 
-
-    public void CreateBullet(BulletType bulletType, Vector3 position, Quaternion rotation)
+    public class BulletCreator : MonoBehaviour
     {
-        GameObject bulletPrefab = null;
+        [SerializeField] private GameObject standartBulletPrefab; 
+        [SerializeField] private GameObject explosiveBulletPrefab; 
+        [SerializeField] private GameObject bouncingBulletPrefab;
 
-        // Выбираем префаб в зависимости от типа пули
-        switch (bulletType)
+        public BulletType ActiveBulletType;
+        public void CreateBullet(Vector3 position, Quaternion rotation)
         {
-            case BulletType.Standart:
-                bulletPrefab = standartBulletPrefab;
-                break;
-            case BulletType.Explosive:
-                bulletPrefab = explosiveBulletPrefab;
-                break;
-            case BulletType.Bouncing:
-                bulletPrefab = bouncingBulletPrefab;
-                break;
-        }
+            GameObject bulletPrefab = null;
+            
+            switch (ActiveBulletType)
+            {
+                case BulletType.Standart:
+                    bulletPrefab = standartBulletPrefab;
+                    break;
+                case BulletType.Explosive:
+                    bulletPrefab = explosiveBulletPrefab;
+                    break;
+                case BulletType.Bouncing:
+                    bulletPrefab = bouncingBulletPrefab;
+                    break;
+            }
 
-        if (bulletPrefab != null)
-        {
-        
-            Instantiate(bulletPrefab, position, rotation);
-        }
-        else
-        {
-            Debug.LogWarning($"Префаб для пули типа {bulletType} не найден!");
+            if (bulletPrefab != null)
+            {
+                Instantiate(bulletPrefab, position, rotation);
+            }
+            else
+            {
+                Debug.LogWarning($"Префаб для пули типа {ActiveBulletType} не найден!");
+            }
         }
     }
 }

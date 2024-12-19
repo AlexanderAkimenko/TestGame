@@ -1,6 +1,9 @@
-public  enum BulletType
+namespace CodeBase.Bullet
 {
-    Standart,    
-    Explosive, 
-    Bouncing    
+    public  enum BulletType
+    {
+        Standart,    
+        Explosive, 
+        Bouncing    
+    }
 }

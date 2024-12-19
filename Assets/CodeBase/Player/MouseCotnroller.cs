@@ -15,14 +15,8 @@ namespace CodeBase.Player
         private Vector2 _lookDelta;
         private float _xRotation = 0f;
 
-        private void Awake()
-        {
-            _inputReader = new InputReader(aim);
-            Cursor.lockState = CursorLockMode.Locked; 
-            //Cursor.visible = false; 
-        }
+        private void Awake() => _inputReader = new InputReader(aim);
 
-    
 
         private void Update()
         {
